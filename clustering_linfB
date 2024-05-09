@@ -5,7 +5,7 @@ library(tidyverse)
 library(gridExtra)
 
 # Datos procesados
-seurat.integrated <- readRDS("~/sc-RNAseq1/analisis/1calidadQC/seurat_integrated_2.rds")
+seurat.integrated <- readRDS("~/sc-RNAseq1/analisis/1calidadQC/seurat_integrated.rds")
 DimPlot(seurat.integrated, reduction = "umap", group.by = c("Condition", "seurat_clusters"),label = T)
 
 # Establecer Ident
