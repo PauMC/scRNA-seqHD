@@ -15,7 +15,7 @@ find_and_write_markers <- function(subset_seurat, idents, file_name) {
 }
 
 # LinfB
-seuratB <- readRDS("~/sc-RNAseq1/analisis/2clustering/seuratB_2.rds")
+seuratB <- readRDS("~/sc-RNAseq1/analisis/2clustering/seuratB.rds")
 
 DimPlot(seuratB, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
 
@@ -34,7 +34,7 @@ for (i in seq_along(identities)) {
 }
 
 # MonoDC
-seuratmonoDC <- readRDS("~/sc-RNAseq1/analisis/2clustering/seuratmonoDC_2.rds")
+seuratmonoDC <- readRDS("~/sc-RNAseq1/analisis/2clustering/seuratmonoDC.rds")
 
 DimPlot(seuratmonoDC, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
 
@@ -53,7 +53,7 @@ for (i in seq_along(identities)) {
 }
 
 # LinfTyNK
-seuratTyNK <- readRDS("~/sc-RNAseq1/analisis/2clustering/seuratTyNK_2.rds")
+seuratTyNK <- readRDS("~/sc-RNAseq1/analisis/2clustering/seuratTyNK.rds")
 
 DimPlot(seuratTyNK, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
 
