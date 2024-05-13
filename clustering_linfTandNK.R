@@ -40,8 +40,8 @@ for (i in c(genes_linfT)){
 }
 do.call(grid.arrange, c(plot.list[1:3],ncol=3))
 
-genes_CD4positive<-c("IL7R", "MAL", "LTB", "CD4", "LDHB", "TPT1", "TMSB10")
-genes_CD8positive<-c("CD8B", "CD8A", "TMSB10", "HCST","LINC02446", "CTSW")
+genes_CD4positive<-c("IL7R", "MAL", "LTB", "CD4", "LDHB", "TPT1")
+genes_CD8positive<-c("CD8B", "CD8A", "HCST","LINC02446", "CTSW")
 plot.list<-list() 
 for (i in c(genes_CD4positive,genes_CD8positive)){
   plot.list[[i]]<-DotPlot(seuratTyNK,group.by = "RNA_snn_res.0.5",features = c(i))+ theme(legend.position = 'none')
