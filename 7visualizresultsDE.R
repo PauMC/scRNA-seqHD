@@ -27,8 +27,8 @@ archivos <- c(
 # Función para filtrar y contar filas
 filtrar_y_contar <- function(archivo) {
   datos <- read_csv(archivo)
-  filtrado_down <- filter(datos, p_val_adj <= 0.05 & avg_log2FC <= 0)
-  filtrado_up <- filter(datos, p_val_adj <= 0.05 & avg_log2FC >= 0)
+  filtrado_down <- filter(datos, p_val_adj <= 0.05 & avg_log2FC < 0)
+  filtrado_up <- filter(datos, p_val_adj <= 0.05 & avg_log2FC > 0)
   return(data.frame(Tipocelular = basename(archivo), Tipo = c("Down", "Up"), Valor = c(nrow(filtrado_down), nrow(filtrado_up))))
 }
 
@@ -84,8 +84,8 @@ biomart <- read.csv("mart_export38.txt")
 # Función para realizar el análisis de enriquecimiento de GO y generar los gráficos
 perform_GO_analysis <- function(data, cell_type) {
   # Filtrar los genes DE
-  data_filtrado_down <- filter(data, p_val_adj < 0.05 & avg_log2FC < 0)
-  data_filtrado_up <- filter(data, p_val_adj < 0.05 & avg_log2FC > 0)
+  data_filtrado_down <- filter(data, p_val_adj <= 0.05 & avg_log2FC < 0)
+  data_filtrado_up <- filter(data, p_val_adj <= 0.05 & avg_log2FC > 0)
   
   # Filtrar el biomart para los genes de interés
   biomart_filtrado_down <- biomart[biomart$Gene.name %in% data_filtrado_down$gene, ]
