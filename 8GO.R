@@ -1,4 +1,4 @@
-# Análisis Gene ontology (GO) para los tipos celulares con mas cambios
+# Analisis Gene ontology (GO) para los tipos celulares con mas cambios
 library(tidyverse)
 library(clusterProfiler)
 library(org.Hs.eg.db)
@@ -17,16 +17,16 @@ genes_filtrados <- rownames(de_markers_linfTyNK_CD4[de_markers_linfTyNK_CD4$p_va
 # Leer el archivo de datos biomart
 biomart <- read.csv("mart_export38.txt")
 
-# Filtrar el biomart para los genes de interés
+# Filtrar el biomart para los genes de interes
 biomart_filtrado <- biomart[biomart$Gene.name %in% genes_filtrados, ]
 
-# Realizar el análisis de enriquecimiento de GO
+# Realizar el analisis de enriquecimiento de GO
 GO_results <- enrichGO(gene = unique(biomart_filtrado$Gene.stable.ID), OrgDb = "org.Hs.eg.db", keyType = "ENSEMBL", ont = "ALL")
 
 # Escribir los resultados en un archivo
 # write.table(GO_results, "linfTyNK_CD4_go.csv")
 
-# Crear el gráfico de barras para los resultados de GO
+# Crear el grafico de barras para los resultados de GO
 barplot(GO_results, split = "ONTOLOGY") + facet_grid(ONTOLOGY ~ ., scale = "free") +
   ggtitle("GO_results linfTyNK_CD4") + theme(axis.text = element_text(size = 40)) +
   theme(legend.text = element_text(size = 20))
@@ -46,16 +46,16 @@ genes_filtrados <- rownames(de_markers_linfTyNK_CD8[de_markers_linfTyNK_CD8$p_va
 # Leer el archivo de datos biomart
 biomart <- read.csv("mart_export38.txt")
 
-# Filtrar el biomart para los genes de interés
+# Filtrar el biomart para los genes de interes
 biomart_filtrado <- biomart[biomart$Gene.name %in% genes_filtrados, ]
 
-# Realizar el análisis de enriquecimiento de GO
+# Realizar el analisis de enriquecimiento de GO
 GO_results <- enrichGO(gene = unique(biomart_filtrado$Gene.stable.ID), OrgDb = "org.Hs.eg.db", keyType = "ENSEMBL", ont = "ALL")
 
 # Escribir los resultados en un archivo
 # write.table(GO_results, "linfTyNK_CD8_go.csv")
 
-# Crear el gráfico de barras para los resultados de GO
+# Crear el grafico de barras para los resultados de GO
 barplot(GO_results, split = "ONTOLOGY") + facet_grid(ONTOLOGY ~ ., scale = "free") +
   ggtitle("GO_results linfTyNK_CD8") + theme(axis.text = element_text(size = 40)) +
   theme(legend.text = element_text(size = 20))
