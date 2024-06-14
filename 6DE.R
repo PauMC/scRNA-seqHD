@@ -6,7 +6,7 @@ library(tidyverse)
 library(gridExtra)
 library(ggrepel)
 
-# Función para encontrar marcadores y escribir los resultados en un archivo CSV
+# Funcion para encontrar marcadores y escribir los resultados en un archivo CSV
 find_and_write_markers <- function(subset_seurat, idents, file_name) {
   Idents(subset_seurat) <- "Condition"
   de_markers <- FindMarkers(subset_seurat, ident.1 = "hd", ident.2 = "control", slot = "counts", test.use = "MAST", verbose = FALSE, latent.vars = "sex")
