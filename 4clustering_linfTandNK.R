@@ -10,7 +10,7 @@ seurat.integrated <- readRDS("~/sc-RNAseq1/analisis/1calidadQC/seurat_integrated
 # Establecer Ident
 seurat.integrated<-SetIdent(seurat.integrated,value = "seurat_clusters")
 
-# Seleccionamos los clusters de interés
+# Seleccionamos los clusters de interes
 seuratTyNK<-subset(seurat.integrated,idents = c("1","2","3","4","5","6","7","9"))
 
 seuratTyNK[["RNA"]] <- split(seuratTyNK[["RNA"]], f = seuratTyNK$Condition)
@@ -79,7 +79,6 @@ do.call(grid.arrange, c(plot.list[1:10],ncol=10))
 # Porcentaje mitocondrial
 VlnPlot(seuratTyNK, features = "percent.mt")
 
-# https://satijalab.org/seurat/articles/pbmc3k_tutorial 
 # Renombrar clusters
 new.cluster.ids <- c("CD4", "CD4", "CD8", "Baja calidad", "CD8", " Baja calidad ", "CD8 naive", "NK", "CD4", "NK", "MAIT", "NK")
 
