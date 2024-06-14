@@ -36,7 +36,7 @@ merged_seurat[["percent.mt"]] <- PercentageFeatureSet(merged_seurat, pattern = "
 ## Visualización de las métricas del QC
 VlnPlot(merged_seurat, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3, group.by = "Condition")
 
-## Visualización de las relaciones del número de moléculas con el porcentaje mitocondrial o el número de genes
+## Visualizacion de las relaciones del número de moléculas con el porcentaje mitocondrial o el número de genes
 plot1 <- FeatureScatter(merged_seurat, feature1 = "nCount_RNA", feature2 = "percent.mt", group.by = "Condition")
 plot2 <- FeatureScatter(merged_seurat, feature1 = "nCount_RNA", feature2 = "nFeature_RNA", group.by = "Condition")
 plot1 + plot2
@@ -48,7 +48,7 @@ merged_seurat
 # Normalizado
 merged_seurat <- NormalizeData(merged_seurat)
 
-# Cálculo del número de dobletes
+# Calculo del número de dobletes
 dbl.dens <- computeDoubletDensity(as(merged_seurat[["RNA"]]$data, Class = "dgCMatrix"))
 summary(dbl.dens)
 merged_seurat$doublet_score <- dbl.dens
@@ -57,13 +57,13 @@ merged_seurat$doublet_dblfinder <- merged_seurat$doublet_score > 5
 table(merged_seurat$doublet_dblfinder)
 merged_seurat <- subset(merged_seurat, doublet_score < 5)
 
-# Análisis sin integrar los datos
+# Analisis sin integrar los datos
 merged_seurat <- FindVariableFeatures(merged_seurat)
 merged_seurat <- ScaleData(merged_seurat)
 merged_seurat <- RunPCA(merged_seurat)
 ElbowPlot(merged_seurat)
 
-# Reducción de dimensionalidad lineal PCA
+# Reduccion de dimensionalidad lineal PCA
 merged_seurat <- FindNeighbors(merged_seurat, dims = 1:20, reduction = "pca")
 merged_seurat <- FindClusters(merged_seurat, resolution = 0.5, cluster.name = "unintegrated_clusters")
 merged_seurat <- RunUMAP(object = merged_seurat, dims = 1:20, reduction.name = "umap.unintegrated")
@@ -75,7 +75,7 @@ merged_seurat[["RNA"]] <- split(merged_seurat[["RNA"]], f = merged_seurat$Condit
 seurat_integrated <- IntegrateLayers(object = merged_seurat, method = CCAIntegration, orig.reduction = "pca", new.reduction = "integrated.cca", verbose = FALSE)
 seurat_integrated[["RNA"]] <- JoinLayers(seurat_integrated[["RNA"]])
 
-# Análisis integrando los datos
+# Analisis integrando los datos
 seurat_integrated <- FindNeighbors(seurat_integrated, reduction = "integrated.cca", dims = 1:20)
 seurat_integrated <- FindClusters(seurat_integrated, resolution = 0.5)
 seurat_integrated <- RunUMAP(seurat_integrated, dims = 1:20, reduction = "integrated.cca")
