@@ -9,5 +9,5 @@ We conducted a single-cell RNA-seq assay on peripheral blood mononuclear cells f
 - clustering_linfTandNK.R: Characterization of T lymphocyte and NK cell clusters
 - clustering_linfB.R: Characterization of B lymphocyte clusters
 - DE.R: Differential expression analysis
-- visualizresultsDE.R: Visualization and interpretation of the differential expression analysis results
-
+- visualizresultsDE.R: Visualization of the differential expression analysis results
+- GO.R: GO biological significance analysis.
