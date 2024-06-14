@@ -72,7 +72,6 @@ do.call(grid.arrange, c(plot.list[1:10],ncol=10))
 # Porcentaje mitocondrial
 VlnPlot(seuratmonoDC, features = "percent.mt")
 
-# https://satijalab.org/seurat/articles/pbmc3k_tutorial 
 # Renombramos clusters
 new.cluster.ids <- c("CD14", "CD14", "CD14", "CD14", "CD16", "CD16", "cDC2", "Doblete mieloide-MAIT", "Doblete mieloide-plasmablasto")
 
