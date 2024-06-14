@@ -1,5 +1,4 @@
-# Análisis go para los tipos celulares con mas cambios
-# Gene ontology (GO)
+# Análisis Gene ontology (GO) para los tipos celulares con mas cambios
 library(tidyverse)
 library(clusterProfiler)
 library(org.Hs.eg.db)
@@ -12,8 +11,8 @@ de_markers_linfTyNK_CD4 <- de_markers_linfTyNK_CD4[, -1]
 rownames(de_markers_linfTyNK_CD4)<- de_markers_linfTyNK_CD4$gene
 
 ## UPREGULATED
-# Filtrar genes con un log2FoldChange mayor que 0.5
-genes_filtrados <- rownames(de_markers_linfTyNK_CD4[de_markers_linfTyNK_CD4$p_val_adj < 0.01 & de_markers_linfTyNK_CD4$avg_log2FC > 0.5, ])
+# Filtrar genes 
+genes_filtrados <- rownames(de_markers_linfTyNK_CD4[de_markers_linfTyNK_CD4$p_val_adj <= 0.05 & de_markers_linfTyNK_CD4$avg_log2FC > 0, ])
 
 # Leer el archivo de datos biomart
 biomart <- read.csv("mart_export38.txt")
@@ -41,8 +40,8 @@ de_markers_linfTyNK_CD8 <- de_markers_linfTyNK_CD8[, -1]
 rownames(de_markers_linfTyNK_CD8)<- de_markers_linfTyNK_CD8$gene
 
 ## DOWNREGULATED
-# Filtrar genes con un log2FoldChange menor que - 0.5
-genes_filtrados <- rownames(de_markers_linfTyNK_CD8[de_markers_linfTyNK_CD8$p_val_adj < 0.01 & de_markers_linfTyNK_CD8$avg_log2FC < - 0.5, ])
+# Filtrar genes
+genes_filtrados <- rownames(de_markers_linfTyNK_CD8[de_markers_linfTyNK_CD8$p_val_adj <= 0.05 & de_markers_linfTyNK_CD8$avg_log2FC < 0, ])
 
 # Leer el archivo de datos biomart
 biomart <- read.csv("mart_export38.txt")
