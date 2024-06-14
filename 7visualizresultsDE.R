@@ -70,11 +70,11 @@ createEnhancedVolcano <- function(data, title) {
                   cutoffLineType = 'twodash',
                   cutoffLineWidth = 0.8,
                   pointSize = 2.0,
-                  labSize = 3,
+                  labSize = 4,
                   colAlpha = 1,
                   legendLabels = c('Not sig.','Log (base 2) FC','p-adj', 'p-adj & Log (base 2) FC'),
                   legendPosition = 'right',
-                  legendLabSize = 10,
+                  legendLabSize = 13,
                   legendIconSize = 4.0)
 }
 
@@ -100,11 +100,11 @@ createEnhancedVolcanoselect <- function(data, title) {
                   cutoffLineType = 'twodash',
                   cutoffLineWidth = 0.8,
                   pointSize = 2.0,
-                  labSize = 3,
+                  labSize = 4,
                   colAlpha = 1,
                   legendLabels = c('Not sig.','Log (base 2) FC','p-adj', 'p-adj & Log (base 2) FC'),
                   legendPosition = 'right',
-                  legendLabSize = 10,
+                  legendLabSize = 13,
                   legendIconSize = 4.0,
                   selectLab = c('IFI6'))
 }
