@@ -25,7 +25,7 @@ archivos <- c(
   "~/sc-RNAseq1/analisis/3DE/de_markers_linfTyNK_NK_MAST.csv"
 )
 
-# Función para filtrar y contar filas
+# Funcion para filtrar y contar filas
 filtrar_y_contar <- function(archivo) {
   datos <- read_csv(archivo)
   filtrado_down <- filter(datos, p_val_adj <= 0.05 & avg_log2FC < 0)
@@ -33,17 +33,17 @@ filtrar_y_contar <- function(archivo) {
   return(data.frame(Tipocelular = basename(archivo), Tipo = c("Down", "Up"), Valor = c(nrow(filtrado_down), nrow(filtrado_up))))
 }
 
-# Aplicar la función a cada archivo y almacenar resultados
+# Aplicar la funcion a cada archivo y almacenar resultados
 resultados <- lapply(archivos, filtrar_y_contar)
 
 # Combinar resultados en un data frame
 resultados_df <- do.call(rbind, resultados)
 resultados_df$Tipocelular <- substr(resultados_df$Tipocelular, 12, nchar(resultados_df$Tipocelular) - 9)
 
-# Convertir el tipo a factor para el orden correcto en el gráfico
+# Convertir el tipo a factor para el orden correcto en el grafico
 resultados_df$Tipo <- factor(resultados_df$Tipo, levels = c("Down", "Up"))
 
-# Gráfico de barras agrupadas
+# Grafico de barras agrupadas
 ggplot(resultados_df, aes(x = Valor, y = Tipocelular, fill = Tipo)) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(title = "Número de genes upregulados y downregulados significativamente",
@@ -55,7 +55,7 @@ ggplot(resultados_df, aes(x = Valor, y = Tipocelular, fill = Tipo)) +
 
 
 # EnhancedVolcano para los tipos celulares con mas cambios
-# Función para crear gráficos EnhancedVolcano
+# Funcion para crear graficos EnhancedVolcano
 createEnhancedVolcano <- function(data, title) {
   EnhancedVolcano(data, 
                   lab = data$gene,
