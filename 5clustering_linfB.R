@@ -11,7 +11,7 @@ DimPlot(seurat.integrated, reduction = "umap", group.by = c("Condition", "seurat
 # Establecer Ident
 seurat.integrated<-SetIdent(seurat.integrated,value = "seurat_clusters")
 
-# Seleccionamos los clusters de interés
+# Seleccionamos los clusters de interes
 seuratB<-subset(seurat.integrated,idents = c("10","11","12","16"))
 
 seuratB[["RNA"]] <- split(seuratB[["RNA"]], f = seuratB$Condition)
